@@ -9,14 +9,14 @@ if __name__ == "__main__":
         csv_reader = csv.DictReader(file)
         # loads in correct data
         for row in csv_reader:
-            country= {}
+            country = {}
             country["region"] = row["Region"].rstrip()
             country["pop. density"] = row["Pop. Density (per sq. mi.)"]
             # removes bad data and adds infant mortality
             if not row["Infant mortality (per 1000 births)"] == "":
                 if not row["Infant mortality (per 1000 births)"] == "unknown":
-                    infant_mortality = row["Infant mortality (per 1000 births)"].replace(",",".")
-                    country["infant mortality"]= float(infant_mortality)
+                    infant_mortality = row["Infant mortality (per 1000 births)"].replace(",", ".")
+                    country["infant mortality"] = float(infant_mortality)
             # removes dad data and adds GDP
             if not row["GDP ($ per capita) dollars"] == "":
                 if not row["GDP ($ per capita) dollars"] == "unknown":
@@ -27,20 +27,20 @@ if __name__ == "__main__":
     # makes dataframe
     data_list = pd.DataFrame.from_dict(countries, orient='index')
     # calculates mean value
-    mean_GDP = data_list.loc[:,"GDP"].mean()
+    mean_GDP = data_list.loc[:, "GDP"].mean()
     print(f"mean: {'%.0f' % mean_GDP}")
     # calculates median
-    median_GDP = data_list.loc[:,"GDP"].median()
+    median_GDP = data_list.loc[:, "GDP"].median()
     print(f"median: {median_GDP}")
     # caculates mode
-    mode_GDP = data_list.loc[:,"GDP"].mode()
+    mode_GDP = data_list.loc[:, "GDP"].mode()
     print(f"mode: {mode_GDP[0]}")
-    #calculates standard deviation
-    std_GDP = data_list.loc[:,"GDP"].std()
+    # calculates standard deviation
+    std_GDP = data_list.loc[:, "GDP"].std()
     print(f"standard deviation: {'%.0f' % std_GDP}")
 
     # makes histogram for GDP
-    hist = data_list.hist(column="GDP",bins=40)
+    hist = data_list.hist(column="GDP", bins=40)
     plt.ylabel("frequency")
     plt.xlabel("GDP ($ per capita) dollars")
     plt.show()
