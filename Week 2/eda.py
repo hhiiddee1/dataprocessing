@@ -12,7 +12,7 @@ if __name__ == "__main__":
         for row in csv_reader:
             country = {}
             country["region"] = row["Region"].rstrip()
-            
+
             # removes bad data and adds poulation density
             if not row["Pop. Density (per sq. mi.)"] == "":
                 if not row["Pop. Density (per sq. mi.)"] == "unknown":
@@ -61,6 +61,7 @@ if __name__ == "__main__":
 
     # makes boxplot for infant mortality
     boxplot = data_list.boxplot(column="infant mortality")
+    plt.title("Infant mortality")
     plt.ylabel("Infant mortality (per 1000 births)")
     plt.show()
 
