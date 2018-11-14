@@ -7,12 +7,17 @@ if __name__ == "__main__":
     countries = {}
     with open("input.csv") as file:
         csv_reader = csv.DictReader(file)
-        
+
         # loads in correct data
         for row in csv_reader:
             country = {}
             country["region"] = row["Region"].rstrip()
-            country["pop. density"] = row["Pop. Density (per sq. mi.)"]
+            
+            # removes bad data and adds poulation density
+            if not row["Pop. Density (per sq. mi.)"] == "":
+                if not row["Pop. Density (per sq. mi.)"] == "unknown":
+                    population_density = row["Pop. Density (per sq. mi.)"].replace(",", ".")
+                    country["pop. density"] = float(population_density)
 
             # removes bad data and adds infant mortality
             if not row["Infant mortality (per 1000 births)"] == "":
