@@ -61,12 +61,12 @@
         txtFile.open("GET", fileName);
         txtFile.send();
 
-
-
+        // makes variable for canvas
         var canvas = document.getElementById('myCanvas');
         var ctx = canvas.getContext('2d');
-        ctx.beginPath();
+
         // makes lines for graph
+        ctx.beginPath();
         ctx.moveTo(100, 100);
         ctx.lineTo(100, 500);
         ctx.lineTo(800, 500);
@@ -121,17 +121,15 @@
         ctx.fillText("21 Juli", xtransform(30) - 20, 535);
         ctx.fillText("21 Augustus", xtransform(60) - 25, 535);
         ctx.fillText("21 September", 800 - 30, 535);
+
+        // makes axis text and title of graph
         ctx.font="bold 18px arial"
         ctx.fillText("Date:", 435, 570)
         ctx.font="bold 18px arial"
         ctx.fillText("Celsius:", 0, 250)
         ctx.font = "bold 30px arial"
-        title = "Maximale temperatuur bij De Bilt, Nederland in Graden Celsius"
+        title = "Maximale temperatuur bij De Bilt, Nederland in graden Celsius"
         ctx.fillText(title, 0, 30)
-
-
-
       </script>
-
   </body>
 </html>

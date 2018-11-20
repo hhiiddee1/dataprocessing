@@ -2,6 +2,7 @@
 import csv
 import json
 
+
 def main():
     dict = {}
     # reads data from csvfile
