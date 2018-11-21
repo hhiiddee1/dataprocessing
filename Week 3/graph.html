@@ -92,6 +92,9 @@
         ctx.lineTo(xtransform(60), 520);
         ctx.moveTo(800, 500);
         ctx.lineTo(800, 520);
+
+        // makes border
+        ctx.rect(5,70,900,510)
         ctx.stroke();
         ctx.closePath();
 
@@ -117,19 +120,21 @@
         ctx.fillText("0 C", 56, 500);
 
         // makes text for x-axis
-        ctx.fillText("21 Juni", 100 - 20, 535);
-        ctx.fillText("21 Juli", xtransform(30) - 20, 535);
-        ctx.fillText("21 Augustus", xtransform(60) - 25, 535);
-        ctx.fillText("21 September", 800 - 30, 535);
+        ctx.fillText("21 juni", 100 - 20, 535);
+        ctx.fillText("21 juli", xtransform(30) - 20, 535);
+        ctx.fillText("21 augustus", xtransform(60) - 25, 535);
+        ctx.fillText("21 september", 800 - 30, 535);
 
         // makes axis text and title of graph
         ctx.font="bold 18px arial"
-        ctx.fillText("Date:", 435, 570)
+        ctx.fillText("Datum", 435, 570)
         ctx.font="bold 18px arial"
-        ctx.fillText("Celsius:", 0, 250)
+        ctx.rotate(-90 * Math.PI / 180)
+        ctx.fillText("Temperatuur in graden Celsius", -450, 30)
         ctx.font = "bold 30px arial"
+        ctx.rotate(90 * Math.PI / 180)
         title = "Maximale temperatuur bij De Bilt, Nederland in graden Celsius"
-        ctx.fillText(title, 0, 30)
+        ctx.fillText(title, 15, 30)
       </script>
   </body>
 </html>
