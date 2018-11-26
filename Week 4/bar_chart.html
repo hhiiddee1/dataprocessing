@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset ="utf-8">
+    <title>renewable enegery europe</title>
+    <script type="text/javascript" src="d3/d3.js"></script>
+    <link rel="stylesheet" type="text/css" href="css.css">
+  </head>
+  <body>
+    <script>
+      // gets temperatures form JSON file
+      var fileName = "data.json";
+      var txtFile = new XMLHttpRequest();
+      var temperatures = []
+      txtFile.onreadystatechange = function() {
+        if (txtFile.readyState === 4 && txtFile.status == 200) {
+          var dataJSON = JSON.parse(txtFile.responseText);
+          for (const [keys] of Object.entries(dataJSON)) {
+            temperature = dataJSON[keys]["precentage"]
+
+            temperatures.push(temperature);
+          }
+          console.log(temperatures)
+        }
+      }
+      txtFile.open("GET", fileName);
+      txtFile.send();
+
+      d3.select("body").append("p").text("New paragraph!");
+
+      d3.select("body").attr("class", "bar")
+
+    </script>
+    <div class="bar"></div>
+  </body>
+</html>
