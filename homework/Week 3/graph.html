@@ -1,0 +1,141 @@
+<!-- Hidde van Oijen 12451096 -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Maximum temperature De Bild, Nederland</title>
+  </head>
+  <body>
+    <canvas id = "myCanvas"  width="1000" height="600">
+    </canvas>
+      <script>
+
+        // fits the data in format
+        function createTransform(domain, range){
+  	       // domain is a two-element array of the data bounds [domain_min, domain_max]
+  	       // range is a two-element array of the screen bounds [range_min, range_max]
+  	       // this gives you two equations to solve:
+  	       // range_min = alpha * domain_min + beta
+  	       // range_max = alpha * domain_max + beta
+   		     // a solution would be:
+          var domain_min = domain[0]
+          var domain_max = domain[1]
+          var range_min = range[0]
+          var range_max = range[1]
+
+          // formulas to calculate the alpha and the beta
+     	    var alpha = (range_max - range_min) / (domain_max - domain_min)
+          var beta = range_max - alpha * domain_max
+
+          // returns the function for the linear transformation (y= a * x + b)
+          return function(x){
+            return alpha * x + beta;
+          }
+        }
+        ytransform = createTransform([0, 400],[0, 400]);
+        xtransform = createTransform([0,90],[100,800])
+
+        // gets temperatures form JSON file
+        var fileName = "data.json";
+        var txtFile = new XMLHttpRequest();
+        var temperatures = []
+        txtFile.onreadystatechange = function() {
+          if (txtFile.readyState === 4 && txtFile.status == 200) {
+            var dataJSON = JSON.parse(txtFile.responseText);
+            for (const [keys] of Object.entries(dataJSON)) {
+              temperature = dataJSON[keys]["temperature"]
+              temperatures.push(temperature);
+            }
+
+            // makes graph line
+            ctx.beginPath()
+            ctx.moveTo(100 , 500 - ytransform(temperatures[0]))
+            for (var i = 1; i < 91; i++) {
+              console.log(ytransform(temperatures[i]));
+              ctx.lineTo(xtransform(i), 500 - ytransform(temperatures[i]))
+            }
+            ctx.strokeStyle="black"
+            ctx.stroke()
+            ctx.closePath()
+          }
+        }
+        txtFile.open("GET", fileName);
+        txtFile.send();
+
+        // makes variable for canvas
+        var canvas = document.getElementById('myCanvas');
+        var ctx = canvas.getContext('2d');
+
+        // makes lines for graph
+        ctx.beginPath();
+        ctx.moveTo(100, 100);
+        ctx.lineTo(100, 500);
+        ctx.lineTo(800, 500);
+
+        // makes lines on y-axis data
+        ctx.moveTo(100, 500);
+        ctx.lineTo(80, 500);
+        ctx.moveTo(100, 500 - ytransform(100));
+        ctx.lineTo(80, 500 - ytransform(100));
+        ctx.moveTo(100, 500 - ytransform(200));
+        ctx.lineTo(80, 500 - ytransform(200));
+        ctx.moveTo(100, 500 - ytransform(300));
+        ctx.lineTo(80, 500 - ytransform(300));
+        ctx.moveTo(100, 500 - ytransform(400));
+        ctx.lineTo(80, 500 - ytransform(400));
+
+        // makes lines on x-axis
+        ctx.moveTo(100, 500);
+        ctx.lineTo(100, 520);
+        ctx.moveTo(xtransform(30), 500);
+        ctx.lineTo(xtransform(30), 520);
+        ctx.moveTo(xtransform(60), 500);
+        ctx.lineTo(xtransform(60), 520);
+        ctx.moveTo(800, 500);
+        ctx.lineTo(800, 520);
+
+        // makes border
+        ctx.rect(5,70,900,510)
+        ctx.stroke();
+        ctx.closePath();
+
+        // makes lines for easy reading
+        ctx.beginPath()
+        ctx.moveTo(100, 400);
+        ctx.lineTo(800, 400);
+        ctx.moveTo(100, 300);
+        ctx.lineTo(800, 300);
+        ctx.moveTo(100, 200);
+        ctx.lineTo(800, 200);
+        ctx.moveTo(100, 100);
+        ctx.lineTo(800, 100);
+        ctx.strokeStyle="lightgray";
+        ctx.stroke();
+        ctx.closePath();
+
+        // makes text for y-axis
+        ctx.fillText("40 C", 50, 500 - ytransform(400));
+        ctx.fillText("30 C", 50, 500 - ytransform(300));
+        ctx.fillText("20 C", 50, 500 - ytransform(200));
+        ctx.fillText("10 C", 50, 500 - ytransform(100));
+        ctx.fillText("0 C", 56, 500);
+
+        // makes text for x-axis
+        ctx.fillText("21 juni", 100 - 20, 535);
+        ctx.fillText("21 juli", xtransform(30) - 20, 535);
+        ctx.fillText("21 augustus", xtransform(60) - 25, 535);
+        ctx.fillText("21 september", 800 - 30, 535);
+
+        // makes axis text and title of graph
+        ctx.font="bold 18px arial"
+        ctx.fillText("Datum", 435, 570)
+        ctx.font="bold 18px arial"
+        ctx.rotate(-90 * Math.PI / 180)
+        ctx.fillText("Temperatuur in graden Celsius", -450, 30)
+        ctx.font = "bold 30px arial"
+        ctx.rotate(90 * Math.PI / 180)
+        title = "Maximale temperatuur bij De Bilt, Nederland in graden Celsius"
+        ctx.fillText(title, 15, 30)
+      </script>
+    <a href="http://projects.knmi.nl/klimatologie/daggegevens/selectie.cgi">bron: www.knmi.nl</a>
+  </body>
+</html>

@@ -1,0 +1,455 @@
+country:text,date:text,obsValue:number
+Albania,2004,28.0
+Albania,2005,31.0
+Albania,2006,32.0
+Albania,2007,33.0
+Albania,2008,33.0
+Albania,2009,31.0
+Albania,2010,32.0
+Albania,2011,31.0
+Albania,2012,35.0
+Albania,2013,33.0
+Albania,2014,32.0
+Albania,2015,35.0
+Albania,Target 2020,38.0
+Austria,2004,23.0
+Austria,2005,24.0
+Austria,2006,25.0
+Austria,2007,27.0
+Austria,2008,28.0
+Austria,2009,30.0
+Austria,2010,30.0
+Austria,2011,31.0
+Austria,2012,31.0
+Austria,2013,32.0
+Austria,2014,33.0
+Austria,2015,33.0
+Austria,Target 2020,34.0
+Belgium,2004,2.0
+Belgium,2005,2.0
+Belgium,2006,3.0
+Belgium,2007,3.0
+Belgium,2008,4.0
+Belgium,2009,5.0
+Belgium,2010,6.0
+Belgium,2011,6.0
+Belgium,2012,7.0
+Belgium,2013,8.0
+Belgium,2014,8.0
+Belgium,2015,8.0
+Belgium,Target 2020,13.0
+Bulgaria,2004,9.0
+Bulgaria,2005,9.0
+Bulgaria,2006,10.0
+Bulgaria,2007,9.0
+Bulgaria,2008,11.0
+Bulgaria,2009,12.0
+Bulgaria,2010,14.0
+Bulgaria,2011,14.0
+Bulgaria,2012,16.0
+Bulgaria,2013,19.0
+Bulgaria,2014,18.0
+Bulgaria,2015,18.0
+Bulgaria,Target 2020,16.0
+Croatia,2004,24.0
+Croatia,2005,24.0
+Croatia,2006,23.0
+Croatia,2007,22.0
+Croatia,2008,22.0
+Croatia,2009,24.0
+Croatia,2010,25.0
+Croatia,2011,25.0
+Croatia,2012,27.0
+Croatia,2013,28.0
+Croatia,2014,28.0
+Croatia,2015,29.0
+Croatia,Target 2020,20.0
+Cyprus,2004,3.0
+Cyprus,2005,3.0
+Cyprus,2006,3.0
+Cyprus,2007,4.0
+Cyprus,2008,5.0
+Cyprus,2009,6.0
+Cyprus,2010,6.0
+Cyprus,2011,6.0
+Cyprus,2012,7.0
+Cyprus,2013,8.0
+Cyprus,2014,9.0
+Cyprus,2015,9.0
+Cyprus,Target 2020,13.0
+Czech Republic,2004,7.0
+Czech Republic,2005,7.0
+Czech Republic,2006,7.0
+Czech Republic,2007,8.0
+Czech Republic,2008,9.0
+Czech Republic,2009,10.0
+Czech Republic,2010,11.0
+Czech Republic,2011,11.0
+Czech Republic,2012,13.0
+Czech Republic,2013,14.0
+Czech Republic,2014,15.0
+Czech Republic,2015,15.0
+Czech Republic,Target 2020,13.0
+Denmark,2004,15.0
+Denmark,2005,16.0
+Denmark,2006,16.0
+Denmark,2007,18.0
+Denmark,2008,19.0
+Denmark,2009,20.0
+Denmark,2010,22.0
+Denmark,2011,24.0
+Denmark,2012,26.0
+Denmark,2013,27.0
+Denmark,2014,29.0
+Denmark,2015,31.0
+Denmark,Target 2020,30.0
+Estonia,2004,18.0
+Estonia,2005,18.0
+Estonia,2006,16.0
+Estonia,2007,17.0
+Estonia,2008,19.0
+Estonia,2009,23.0
+Estonia,2010,25.0
+Estonia,2011,26.0
+Estonia,2012,26.0
+Estonia,2013,26.0
+Estonia,2014,26.0
+Estonia,2015,29.0
+Estonia,Target 2020,25.0
+European Union (27 countries),Target 2020,20.0
+European Union (28 countries),2004,9.0
+European Union (28 countries),2005,9.0
+European Union (28 countries),2006,10.0
+European Union (28 countries),2007,10.0
+European Union (28 countries),2008,11.0
+European Union (28 countries),2009,12.0
+European Union (28 countries),2010,13.0
+European Union (28 countries),2011,13.0
+European Union (28 countries),2012,14.0
+European Union (28 countries),2013,15.0
+European Union (28 countries),2014,16.0
+European Union (28 countries),2015,17.0
+European Union (28 countries),Target 2020,20.0
+Finland,2004,29.0
+Finland,2005,29.0
+Finland,2006,30.0
+Finland,2007,30.0
+Finland,2008,31.0
+Finland,2009,31.0
+Finland,2010,32.0
+Finland,2011,33.0
+Finland,2012,34.0
+Finland,2013,37.0
+Finland,2014,39.0
+Finland,2015,39.0
+Finland,Target 2020,38.0
+"Former Yugoslav Republic of Macedonia, the",2004,16.0
+"Former Yugoslav Republic of Macedonia, the",2005,17.0
+"Former Yugoslav Republic of Macedonia, the",2006,17.0
+"Former Yugoslav Republic of Macedonia, the",2007,15.0
+"Former Yugoslav Republic of Macedonia, the",2008,16.0
+"Former Yugoslav Republic of Macedonia, the",2009,17.0
+"Former Yugoslav Republic of Macedonia, the",2010,17.0
+"Former Yugoslav Republic of Macedonia, the",2011,16.0
+"Former Yugoslav Republic of Macedonia, the",2012,18.0
+"Former Yugoslav Republic of Macedonia, the",2013,19.0
+"Former Yugoslav Republic of Macedonia, the",2014,20.0
+"Former Yugoslav Republic of Macedonia, the",2015,20.0
+"Former Yugoslav Republic of Macedonia, the",Target 2020,28.0
+France,2004,9.0
+France,2005,10.0
+France,2006,9.0
+France,2007,10.0
+France,2008,11.0
+France,2009,12.0
+France,2010,13.0
+France,2011,11.0
+France,2012,13.0
+France,2013,14.0
+France,2014,15.0
+France,2015,15.0
+France,Target 2020,23.0
+Germany,2004,6.0
+Germany,2005,7.0
+Germany,2006,8.0
+Germany,2007,9.0
+Germany,2008,9.0
+Germany,2009,10.0
+Germany,2010,11.0
+Germany,2011,11.0
+Germany,2012,12.0
+Germany,2013,12.0
+Germany,2014,14.0
+Germany,2015,15.0
+Germany,Target 2020,18.0
+Greece,2004,7.0
+Greece,2005,7.0
+Greece,2006,7.0
+Greece,2007,8.0
+Greece,2008,8.0
+Greece,2009,9.0
+Greece,2010,10.0
+Greece,2011,11.0
+Greece,2012,14.0
+Greece,2013,15.0
+Greece,2014,15.0
+Greece,2015,15.0
+Greece,Target 2020,18.0
+Hungary,2004,4.0
+Hungary,2005,5.0
+Hungary,2006,5.0
+Hungary,2007,6.0
+Hungary,2008,7.0
+Hungary,2009,8.0
+Hungary,2010,13.0
+Hungary,2011,14.0
+Hungary,2012,16.0
+Hungary,2013,16.0
+Hungary,2014,15.0
+Hungary,2015,15.0
+Hungary,Target 2020,13.0
+Iceland,2004,59.0
+Iceland,2005,60.0
+Iceland,2006,61.0
+Iceland,2007,72.0
+Iceland,2008,68.0
+Iceland,2009,70.0
+Iceland,2010,70.0
+Iceland,2011,72.0
+Iceland,2012,73.0
+Iceland,2013,72.0
+Iceland,2014,71.0
+Iceland,2015,70.0
+Iceland,Target 2020,64.0
+Ireland,2004,2.0
+Ireland,2005,3.0
+Ireland,2006,3.0
+Ireland,2007,4.0
+Ireland,2008,4.0
+Ireland,2009,5.0
+Ireland,2010,6.0
+Ireland,2011,7.0
+Ireland,2012,7.0
+Ireland,2013,8.0
+Ireland,2014,9.0
+Ireland,2015,9.0
+Ireland,Target 2020,16.0
+Italy,2004,6.0
+Italy,2005,8.0
+Italy,2006,8.0
+Italy,2007,10.0
+Italy,2008,12.0
+Italy,2009,13.0
+Italy,2010,13.0
+Italy,2011,13.0
+Italy,2012,15.0
+Italy,2013,17.0
+Italy,2014,17.0
+Italy,2015,18.0
+Italy,Target 2020,17.0
+Latvia,2004,33.0
+Latvia,2005,32.0
+Latvia,2006,31.0
+Latvia,2007,30.0
+Latvia,2008,30.0
+Latvia,2009,34.0
+Latvia,2010,30.0
+Latvia,2011,34.0
+Latvia,2012,36.0
+Latvia,2013,37.0
+Latvia,2014,39.0
+Latvia,2015,38.0
+Latvia,Target 2020,40.0
+Lithuania,2004,17.0
+Lithuania,2005,17.0
+Lithuania,2006,17.0
+Lithuania,2007,17.0
+Lithuania,2008,18.0
+Lithuania,2009,20.0
+Lithuania,2010,20.0
+Lithuania,2011,20.0
+Lithuania,2012,21.0
+Lithuania,2013,23.0
+Lithuania,2014,24.0
+Lithuania,2015,26.0
+Lithuania,Target 2020,23.0
+Luxembourg,2004,1.0
+Luxembourg,2005,1.0
+Luxembourg,2006,2.0
+Luxembourg,2007,3.0
+Luxembourg,2008,3.0
+Luxembourg,2009,3.0
+Luxembourg,2010,3.0
+Luxembourg,2011,3.0
+Luxembourg,2012,3.0
+Luxembourg,2013,4.0
+Luxembourg,2014,5.0
+Luxembourg,2015,5.0
+Luxembourg,Target 2020,11.0
+Malta,2004,0.0
+Malta,2005,0.0
+Malta,2006,0.0
+Malta,2007,0.0
+Malta,2008,0.0
+Malta,2009,0.0
+Malta,2010,1.0
+Malta,2011,2.0
+Malta,2012,3.0
+Malta,2013,4.0
+Malta,2014,5.0
+Malta,2015,5.0
+Malta,Target 2020,10.0
+Montenegro,2005,36.0
+Montenegro,2006,35.0
+Montenegro,2007,33.0
+Montenegro,2008,32.0
+Montenegro,2009,39.0
+Montenegro,2010,41.0
+Montenegro,2011,41.0
+Montenegro,2012,42.0
+Montenegro,2013,44.0
+Montenegro,2014,44.0
+Montenegro,2015,43.0
+Montenegro,Target 2020,33.0
+Netherlands,2004,2.0
+Netherlands,2005,3.0
+Netherlands,2006,3.0
+Netherlands,2007,3.0
+Netherlands,2008,4.0
+Netherlands,2009,4.0
+Netherlands,2010,4.0
+Netherlands,2011,5.0
+Netherlands,2012,5.0
+Netherlands,2013,5.0
+Netherlands,2014,6.0
+Netherlands,2015,6.0
+Netherlands,Target 2020,14.0
+Norway,2004,58.0
+Norway,2005,60.0
+Norway,2006,60.0
+Norway,2007,60.0
+Norway,2008,62.0
+Norway,2009,65.0
+Norway,2010,61.0
+Norway,2011,65.0
+Norway,2012,66.0
+Norway,2013,67.0
+Norway,2014,69.0
+Norway,2015,69.0
+Norway,Target 2020,68.0
+Poland,2004,7.0
+Poland,2005,7.0
+Poland,2006,7.0
+Poland,2007,7.0
+Poland,2008,8.0
+Poland,2009,9.0
+Poland,2010,9.0
+Poland,2011,10.0
+Poland,2012,11.0
+Poland,2013,11.0
+Poland,2014,12.0
+Poland,2015,12.0
+Poland,Target 2020,15.0
+Portugal,2004,19.0
+Portugal,2005,20.0
+Portugal,2006,21.0
+Portugal,2007,22.0
+Portugal,2008,23.0
+Portugal,2009,24.0
+Portugal,2010,24.0
+Portugal,2011,25.0
+Portugal,2012,25.0
+Portugal,2013,26.0
+Portugal,2014,27.0
+Portugal,2015,28.0
+Portugal,Target 2020,31.0
+Romania,2004,16.0
+Romania,2005,17.0
+Romania,2006,17.0
+Romania,2007,18.0
+Romania,2008,21.0
+Romania,2009,23.0
+Romania,2010,23.0
+Romania,2011,21.0
+Romania,2012,23.0
+Romania,2013,24.0
+Romania,2014,25.0
+Romania,2015,25.0
+Romania,Target 2020,24.0
+Slovakia,2004,6.0
+Slovakia,2005,6.0
+Slovakia,2006,7.0
+Slovakia,2007,8.0
+Slovakia,2008,8.0
+Slovakia,2009,9.0
+Slovakia,2010,9.0
+Slovakia,2011,10.0
+Slovakia,2012,10.0
+Slovakia,2013,10.0
+Slovakia,2014,12.0
+Slovakia,2015,13.0
+Slovakia,Target 2020,14.0
+Slovenia,2004,16.0
+Slovenia,2005,16.0
+Slovenia,2006,16.0
+Slovenia,2007,16.0
+Slovenia,2008,15.0
+Slovenia,2009,20.0
+Slovenia,2010,20.0
+Slovenia,2011,20.0
+Slovenia,2012,21.0
+Slovenia,2013,22.0
+Slovenia,2014,22.0
+Slovenia,2015,22.0
+Slovenia,Target 2020,25.0
+Spain,2004,8.0
+Spain,2005,8.0
+Spain,2006,9.0
+Spain,2007,10.0
+Spain,2008,11.0
+Spain,2009,13.0
+Spain,2010,14.0
+Spain,2011,13.0
+Spain,2012,14.0
+Spain,2013,15.0
+Spain,2014,16.0
+Spain,2015,16.0
+Spain,Target 2020,20.0
+Sweden,2004,39.0
+Sweden,2005,41.0
+Sweden,2006,43.0
+Sweden,2007,44.0
+Sweden,2008,45.0
+Sweden,2009,48.0
+Sweden,2010,47.0
+Sweden,2011,49.0
+Sweden,2012,51.0
+Sweden,2013,52.0
+Sweden,2014,53.0
+Sweden,2015,54.0
+Sweden,Target 2020,49.0
+Turkey,2004,16.0
+Turkey,2005,16.0
+Turkey,2006,14.0
+Turkey,2007,13.0
+Turkey,2008,14.0
+Turkey,2009,14.0
+Turkey,2010,14.0
+Turkey,2011,13.0
+Turkey,2012,13.0
+Turkey,2013,14.0
+Turkey,2014,14.0
+Turkey,2015,14.0
+United Kingdom,2004,1.0
+United Kingdom,2005,1.0
+United Kingdom,2006,2.0
+United Kingdom,2007,2.0
+United Kingdom,2008,3.0
+United Kingdom,2009,3.0
+United Kingdom,2010,4.0
+United Kingdom,2011,4.0
+United Kingdom,2012,5.0
+United Kingdom,2013,6.0
+United Kingdom,2014,7.0
+United Kingdom,2015,8.0
+United Kingdom,Target 2020,15.0

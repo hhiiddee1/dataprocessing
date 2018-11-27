@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset ="utf-8">
+    <title>renewable enegery europe</title>
+    <script type="text/javascript" src="d3/d3.js"></script>
+    <link rel="stylesheet" type="text/css" href="css.css">
+  </head>
+  <body>
+    <script type="text/javascript" >
+      // gets temperatures form JSON file
+      var percentages = []
+      d3.json("data.json").then(function(data) {
+        var countries = Object.keys(data)
+        for (const [keys] of Object.entries(data)) {
+          percentage = data[keys]["percentage"]
+          percentages.push(percentage);
+        }
+        console.log(percentages)
+
+        //Create SVG element
+        var svg = d3.select("body")
+          .append("svg")
+          .attr("width", w)
+          .attr("height", h)
+
+        console.log(countries)
+        svg.selectAll("rect")
+          .data(percentages)
+          .enter()
+          .append("rect")
+          .attr("width", (w - 100) / percentages.length - barPadding)
+          .attr("height", 100)
+          .attr("x", function(d, i) {
+            return i * ((w -100) / percentages.length) + 100;
+          })
+          .attr("height", function(d) {
+            return (d * 2);
+          })
+          .attr("y", function(d) {
+            return h - (d * 2) -  200;  //Height minus data value
+          })
+          .attr("fill", function(d) {
+            return "rgb(" + (d * 10) + ", 0, 0)"
+          });
+
+          // svg.selectAll("text")
+          // .data(percentages)
+          // .enter()
+          // .append("text")
+          // .text(function(d) {
+          //   return d;
+          // })
+          // .attr("text-anchor", "middle")
+          // .attr("x", function(d, i) {
+          //   return i * ((w -100) / percentages.length) + ((w - 100) / percentages.length - barPadding) / 2 + 100;
+          // })
+          // .attr("y", function(d) {
+          //   return h - (d * 2) - 90;  //15 is now 14
+          // })
+          // .attr("font-family", "sans-serif")
+          // .attr("font-size", "11px")
+          // .attr("fill", "white");
+
+        svg.selectAll("text")
+          .data(countries)
+          .enter()
+          .append("text")
+          .text(function(d) {
+            return d;
+          })
+          .attr("transform", "rotate(90)")
+          .attr("x", function(d) {
+            return h - 190;  //15 is now 14
+          })
+          .attr("y", function(d, i) {
+            return -i * ((w - 100) / percentages.length) - ((w - 100) / percentages.length - barPadding) / 2 - 95;
+          })
+          .attr("font-family", "sans-serif")
+          .attr("font-size", "11px");
+
+
+
+          var scale = d3.scaleLinear()
+                              .domain([0,100])
+                              .range([200,0]);
+          //Create Y axis
+          var y_axis = svg.append("g")
+              .attr("class", "y axis")
+              .attr("transform", "translate(100 ,0 )")
+              .call(d3.axisLeft(scale));
+      })
+
+      var w = 800;
+      var h = 400;
+      var barPadding = 1;
+
+    </script>
+  </body>
+</html>
