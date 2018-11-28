@@ -33,21 +33,56 @@
           percentages.push(percentage);
         }
 
-
-
-
-
         // create SVG element
         var svg = d3.select("body")
           .append("svg")
           .attr("width", w)
           .attr("height", h)
 
-        drawBars(svg);
-
+        // makes tooltip for hoverover
+        var tooltip = d3.select("body").append("div")
+            .style("position","absolute")
+            .style("background","#ff4d4d")
+            .style("padding","5 10px")
+            .style("border","1px #ff1a1a solid")
+            .style("border-radius","5px")
+            .style("opacity","0");
 
         // makes bars for chart
+        svg.selectAll("rect")
+          .data(percentages)
+          .enter()
+          .append("rect")
+          .attr("width", (w - 100) / percentages.length - barPadding)
+          .attr("height", 100)
+          .attr("x", function(d, i) {
+            return i * ((w -100) / percentages.length) + 100;
+          })
+          .attr("height", function(d) {
+            return (d * 4);
+          })
+          .attr("y", function(d) {
+            return h - (d * 4) -  200;  //Height minus data value
+          })
+          .attr("fill", function(d) {
+            return "rgb(" + (d * 10) + ", 0, 0)"
+          })
+          // makes text appear when hovering over
+          .on("mouseover", function(d){
+            tooltip.transition()
+              .style("opacity", 1)
 
+            tooltip.html(d)
+              .style("left", (d3.event.pageX)+"px")
+              .style("top",(h - (d * 4))+"px")
+              d3.select(this).style("opacity", 1)
+          })
+          // makes text go away when hovering over
+          .on("mouseout", function(d){
+            tooltip.transition()
+                .style("opacity", 0)
+            d3.select(this).style("opacity", 1)
+          })
 
         // makes text for X axis
         svg.selectAll("text")
@@ -91,57 +126,10 @@
             .attr("transform", "rotate(-90)")
             .attr("x", -370)
             .attr("y", 50)
-            .attr("font-weight","bold");
+            .attr("font-weight","bold")
 
 
-      });
-
-      // makes bars for chart
-      function drawBars(svg){
-
-        var tooltip = d3.select("body").append("div")
-            .style("position","absolute")
-            .style("background","#ff4d4d")
-            .style("padding","5 10px")
-            .style("border","1px #ff1a1a solid")
-            .style("border-radius","5px")
-            .style("opacity","0")
-
-        svg.selectAll("rect")
-          .data(percentages)
-          .enter()
-          .append("rect")
-          .attr("width", (w - 100) / percentages.length - barPadding)
-          .attr("height", 100)
-          .attr("x", function(d, i) {
-            return i * ((w -100) / percentages.length) + 100;
-          })
-          .attr("height", function(d) {
-            return (d * 4);
-          })
-          .attr("y", function(d) {
-            return h - (d * 4) -  200;  //Height minus data value
-          })
-          .attr("fill", function(d) {
-            return "rgb(" + (d * 10) + ", 0, 0)"
-          })
-          // makes text appear when hovering over
-          .on("mouseover", function(d){
-            tooltip.transition()
-              .style("opacity", 1)
-
-            tooltip.html(d)
-              .style("left", (d3.event.pageX)+"px")
-              .style("top",(h - (d * 4))+"px")
-              d3.select(this).style("opacity", 1)
-          })
-          // makes text go away when hovering over
-          .on("mouseout", function(d){
-            tooltip.transition()
-              .style("opacity", 0)
-            d3.select(this).style("opacity", 1)
-          });
-      }
+      })
 
       var w = 800;
       var h = 610;
