@@ -1,3 +1,5 @@
+<!--  Hidde van Oijen
+ 12451096 -->
 <!DOCTYPE html>
 <html>
   <head>
@@ -8,7 +10,23 @@
   </head>
   <body>
     <script type="text/javascript" >
-      // gets temperatures form JSON file
+
+      d3.select("body")
+        .append("text")
+        .text("Hidde van Oijen")
+
+      d3.select("body")
+        .append("text")
+        .attr("dy", "0em")
+        .text("12451096")
+
+      d3.select("body")
+        .append("text")
+        .attr("dy", "0em")
+        .attr("class","title")
+        .text("% renewable energie of total energie production per country in 2015")
+
+      // gets data form JSON file
       var percentages = []
       d3.json("data.json").then(function(data) {
         var countries = Object.keys(data)
@@ -16,15 +34,23 @@
           percentage = data[keys]["percentage"]
           percentages.push(percentage);
         }
-        console.log(percentages)
 
-        //Create SVG element
+        // create SVG element
         var svg = d3.select("body")
           .append("svg")
           .attr("width", w)
           .attr("height", h)
 
-        console.log(countries)
+        // makes tooltip for hoverover
+        var tooltip = d3.select("body").append("div")
+            .style("position","absolute")
+            .style("background","#ff4d4d")
+            .style("padding","5 10px")
+            .style("border","1px #ff1a1a solid")
+            .style("border-radius","5px")
+            .style("opacity","0");
+
+        // makes bars for chart
         svg.selectAll("rect")
           .data(percentages)
           .enter()
@@ -35,33 +61,32 @@
             return i * ((w -100) / percentages.length) + 100;
           })
           .attr("height", function(d) {
-            return (d * 2);
+            return (d * 4);
           })
           .attr("y", function(d) {
-            return h - (d * 2) -  200;  //Height minus data value
+            return h - (d * 4) -  200;  //Height minus data value
           })
           .attr("fill", function(d) {
             return "rgb(" + (d * 10) + ", 0, 0)"
-          });
+          })
+          // makes text appear when hovering over
+          .on("mouseover", function(d){
+            tooltip.transition()
+              .style("opacity", 1)
 
-          // svg.selectAll("text")
-          // .data(percentages)
-          // .enter()
-          // .append("text")
-          // .text(function(d) {
-          //   return d;
-          // })
-          // .attr("text-anchor", "middle")
-          // .attr("x", function(d, i) {
-          //   return i * ((w -100) / percentages.length) + ((w - 100) / percentages.length - barPadding) / 2 + 100;
-          // })
-          // .attr("y", function(d) {
-          //   return h - (d * 2) - 90;  //15 is now 14
-          // })
-          // .attr("font-family", "sans-serif")
-          // .attr("font-size", "11px")
-          // .attr("fill", "white");
+            tooltip.html(d)
+                .style("left", (d3.event.pageX)+"px")
+                .style("top",(d3.event.pageY+"px"))
+              d3.select(this).style("opacity", 1)
+          })
+          // makes text go away when hovering over
+          .on("mouseout", function(d){
+            tooltip.transition()
+                .style("opacity", 0)
+            d3.select(this).style("opacity", 1)
+          })
 
+        // makes text for X axis
         svg.selectAll("text")
           .data(countries)
           .enter()
@@ -74,25 +99,42 @@
             return h - 190;  //15 is now 14
           })
           .attr("y", function(d, i) {
-            return -i * ((w - 100) / percentages.length) - ((w - 100) / percentages.length - barPadding) / 2 - 95;
+            return -i * ((w -100) / percentages.length) -105;
           })
           .attr("font-family", "sans-serif")
           .attr("font-size", "11px");
 
 
-
+          // makes scale for Y axis
           var scale = d3.scaleLinear()
                               .domain([0,100])
-                              .range([200,0]);
+                              .range([410,10]);
           //Create Y axis
-          var y_axis = svg.append("g")
-              .attr("class", "y axis")
-              .attr("transform", "translate(100 ,0 )")
-              .call(d3.axisLeft(scale));
+          svg.append("g")
+            .attr("class", "y axis")
+            .attr("transform", "translate(100 ,0 )")
+            .call(d3.axisLeft(scale));
+
+          // makes text for Y axis
+          svg.append("text")
+            .text("countries:")
+            .attr("x", 130)
+            .attr("y", 520)
+            .attr("font-weight","bold")
+
+          // makes text for X axis
+          svg.append("text")
+            .text("%renewable energie of total energie production:")
+            .attr("transform", "rotate(-90)")
+            .attr("x", -370)
+            .attr("y", 50)
+            .attr("font-weight","bold")
+
+
       })
 
       var w = 800;
-      var h = 400;
+      var h = 610;
       var barPadding = 1;
 
     </script>
