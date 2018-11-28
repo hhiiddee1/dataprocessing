@@ -82,7 +82,7 @@
             tooltip.transition()
                 .style("opacity", 0)
             d3.select(this).style("opacity", 1)
-          })
+          });
 
         // makes text for X axis
         svg.selectAll("text")
@@ -102,38 +102,40 @@
           .attr("font-family", "sans-serif")
           .attr("font-size", "11px");
 
-
-          // makes scale for Y axis
-          var scale = d3.scaleLinear()
-                              .domain([0,100])
-                              .range([410,10]);
-          //Create Y axis
-          svg.append("g")
-            .attr("class", "y axis")
-            .attr("transform", "translate(100 ,0 )")
-            .call(d3.axisLeft(scale));
-
-          // makes text for Y axis
-          svg.append("text")
-            .text("countries:")
-            .attr("x", 130)
-            .attr("y", 520)
-            .attr("font-weight","bold")
-
-          // makes text for X axis
-          svg.append("text")
-            .text("%renewable energie of total energie production:")
-            .attr("transform", "rotate(-90)")
-            .attr("x", -370)
-            .attr("y", 50)
-            .attr("font-weight","bold")
-
-
+          // make(axis)
+          makeAxis(svg);
       })
 
       var w = 800;
       var h = 610;
       var barPadding = 1;
+
+      function makeAxis(svg) {
+      // makes scale for Y axis
+      var scale = d3.scaleLinear()
+                          .domain([0,100])
+                          .range([410,10]);
+      //Create Y axis
+      svg.append("g")
+        .attr("class", "y axis")
+        .attr("transform", "translate(100 ,0 )")
+        .call(d3.axisLeft(scale));
+
+      // makes text for Y axis
+      svg.append("text")
+        .text("countries:")
+        .attr("x", 130)
+        .attr("y", 520)
+        .attr("font-weight","bold");
+
+      // makes text for X axis
+      svg.append("text")
+        .text("%renewable energie of total energie production:")
+        .attr("transform", "rotate(-90)")
+        .attr("x", -370)
+        .attr("y", 50)
+        .attr("font-weight","bold");
+      };
 
     </script>
   </body>
