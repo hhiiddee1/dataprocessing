@@ -4,30 +4,7 @@ window.onload = function() {
   var consConf = "http://stats.oecd.org/SDMX-JSON/data/HH_DASH/FRA+DEU+KOR+NLD+PRT+GBR.COCONF.A/all?startTime=2007&endTime=2015"
   var womenInScience = "http://stats.oecd.org/SDMX-JSON/data/MSTI_PUB/TH_WRXRS.FRA+DEU+KOR+NLD+PRT+GBR/all?startTime=2007&endTime=2015"
   console.log("hello,world")
-  // var requests = d3.json(consConf);
-  // var requests2 = d3.json(womenInScience);
-  //
-  // var datapoints1 = []
-  // Promise.resolve(requests).then(function(data) {
-  //     //console.log(transformResponse(data));
-  //     for (const [keys] of Object.entries(data)) {
-  //       datapoint1 = data[keys]["datapoint"]
-  //       datapoints1.push(datapoint1);
-  //     };
-  // }).catch(function(e){
-  //     throw(e);
-  // });
-  // var datapoints2 = []
-  // Promise.resolve(requests2).then(function(data) {
-  //     console.log(transformResponse(data));
-  //     for (const [keys] of Object.entries(data)) {
-  //       console.log(keys)
-  //       datapoint2 = data[keys]["datapoint"]
-  //       datapoints2.push(datapoint2);
-  //     };
-  // }).catch(function(e){
-  //     throw(e);
-  // });
+
   var year2007 = {"France": [], "Netherlands": [], "Portugal": [], "Germany": [], "United Kingdom": [], "Korea": []}
   var year2008 = {"France": [], "Netherlands": [], "Portugal": [], "Germany": [], "United Kingdom": [], "Korea": []}
   var year2009 = {"France": [], "Netherlands": [], "Portugal": [], "Germany": [], "United Kingdom": [], "Korea": []}
@@ -50,13 +27,6 @@ window.onload = function() {
     var dataset1 = transformResponse(d[1]);
     var dataset2 = transformResponse(d[0]);
 
-    // counter = 0
-    // for (i = 0; i < 6; i++) {
-    //   for (j = 0; i < 9; j++) {
-    //   dataComplete[j][i] = dataset[counter]["datapoint"]
-    //   counter++;
-    //   }
-    // }
 
     dataset1.forEach(function(d){
       dataComplete[d["time"]][d["Country"]].push(d["datapoint"])
@@ -68,7 +38,27 @@ window.onload = function() {
       }
       dataComplete[d["time"]][countries[counter]].push(d["datapoint"])
     })
-    console.log(dataComplete)
+    console.log(dataComplete["2007"])
+
+    // dataComplete.forEach.value(function(d) {
+    //   console.log(d)
+    // })
+    console.log(Object.values(dataComplete["2008"]))
+
+    //makeCircles(svg, dataComplete["2007"])
+
+    svg.selectAll("circle")
+       .data(Object.values(dataComplete["2007"]))
+       .enter()
+       .append("circle")
+       .attr("cx", function(d) {
+          return d[1] * 8 + margin;
+       })
+       .attr("cy", function(d) {
+          return h - d[0] - margin
+       })
+       .attr("r", 5);
+
   }).catch(function(e){
     throw(e);
   });
@@ -76,32 +66,58 @@ window.onload = function() {
   console.log('Yes, you can!')
 
   var w = 800;
-  var h = 610;
+  var h = 300;
+  var margin = 100;
   //Create SVG element
   var svg = d3.select("body")
               .append("svg")
               .attr("width", w)
               .attr("height", h);
 
-  //makeCircles(svg)
+  makeAxis(svg);
+
+  function makeAxis(svg) {
+    // makes scale for Y axis
+    var scaleX = d3.scaleLinear()
+                    .domain([0, 200])
+                        .range([200, 10]);
+
+    var scaleY = d3.scaleLinear()
+                    .domain([0,50])
+                    .range([0, 400]);
+    //Create Y axis
+    svg.append("g")
+      .attr("class", "y axis")
+      .attr("transform", "translate(100, 0 )")
+      .call(d3.axisLeft(scaleX));
+
+      svg.append("g")
+        .attr("class", "y axis")
+        .attr("transform", "translate(" + margin + ", 200 )")
+        .call(d3.axisBottom(scaleY));
+
+    // makes text for X axis
+    svg.append("text")
+      .text("Women researchers as a percentage of total researchers:")
+      .attr("x", 110)
+      .attr("y", 250)
+      .attr("font-weight","bold");
+
+    // makes text for Y axis
+    svg.append("text")
+      .text("Consumer confidence:")
+      .attr("transform", "rotate(-90)")
+      .attr("x", -170)
+      .attr("y", 50)
+      .attr("font-weight","bold");
+    };
 
 };
 
 
-function makeCircles (d, svg){
-  svg.selectAll("circle")
-     .data(dataset)
-     .enter()
-     .append("circle")
-     .attr("cx", function(d) {
-          return d[0];
-     })
-     .attr("cy", function(d) {
-          return d[1];
-     })
-     .attr("r", 5);
+//function makeCircles (d, svg, data){
 
-}
+
 
 function transformResponse(data){
 
