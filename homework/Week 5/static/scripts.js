@@ -38,12 +38,69 @@ window.onload = function() {
       }
       dataComplete[d["time"]][countries[counter]].push(d["datapoint"])
     })
-    console.log(dataComplete["2007"])
 
-    // dataComplete.forEach.value(function(d) {
-    //   console.log(d)
-    // })
-    console.log(Object.values(dataComplete["2008"]))
+    console.log(Object.keys(dataComplete["2008"]))
+
+    svg.selectAll("text")
+      .data(Object.keys(dataComplete["2008"]))
+      .enter()
+      .append("text")
+      .text(function(d) {
+        return d;
+      })
+      .attr("x", function(d) {
+        return 550;
+      })
+      .attr("y", function(d, i) {
+        return -i * (w -100)
+      })
+      .attr("font-family", "sans-serif")
+      .attr("font-size", "11px");
+
+      svg.append("text")
+        .text("France")
+        .attr("x", 580)
+        .attr("y", 63)
+
+      svg.append("text")
+        .text("The Netherlands")
+        .attr("x", 580)
+        .attr("y", 83)
+
+      svg.append("text")
+        .text("Portugal")
+        .attr("x", 580)
+        .attr("y", 103)
+
+      svg.append("text")
+        .text("Germany")
+        .attr("x", 580)
+        .attr("y", 123)
+
+      svg.append("text")
+        .text("United Kingdom")
+        .attr("x", 580)
+        .attr("y", 143)
+
+      svg.append("text")
+        .text("Korea")
+        .attr("x", 580)
+        .attr("y", 163)
+
+      // makes text for X axis
+      svg.append("text")
+        .text("Women researchers as a percentage of total researchers:")
+        .attr("x", 110)
+        .attr("y", 250)
+        .attr("font-weight","bold");
+
+      // makes text for Y axis
+      svg.append("text")
+        .text("Consumer confidence:")
+        .attr("transform", "rotate(-90)")
+        .attr("x", -170)
+        .attr("y", 50)
+        .attr("font-weight","bold");
 
     //makeCircles(svg, dataComplete["2007"])
     svg.selectAll("circle")
@@ -80,6 +137,39 @@ window.onload = function() {
          }
        });
 
+    svg.selectAll("rect")
+        .data(Object.keys(dataComplete["2007"]))
+        .enter()
+        .append("rect")
+        .attr("width", 20 )
+        .attr("height", 20 - padding)
+        .attr("x", function(d) {
+          return 550;
+        })
+        .attr("y", function(d, i) {
+          return i * 20 + 50;
+        })
+        .style("fill", function(d, i){
+          if (i === 0){
+            return "red";
+          }
+          if (i === 1){
+            return "blue";
+          }
+          if (i === 2){
+            return "green";
+          }
+          if (i === 3){
+            return "yellow";
+          }
+          if (i === 4){
+            return "brown";
+          }
+          if (i === 5){
+            return "purple";
+          }
+        });
+
   }).catch(function(e){
     throw(e);
   });
@@ -89,6 +179,7 @@ window.onload = function() {
   var w = 800;
   var h = 300;
   var margin = 100;
+  var padding = 5;
   //Create SVG element
   var svg = d3.select("body")
               .append("svg")
@@ -117,20 +208,6 @@ window.onload = function() {
         .attr("transform", "translate(" + margin + ", 200 )")
         .call(d3.axisBottom(scaleY));
 
-    // makes text for X axis
-    svg.append("text")
-      .text("Women researchers as a percentage of total researchers:")
-      .attr("x", 110)
-      .attr("y", 250)
-      .attr("font-weight","bold");
-
-    // makes text for Y axis
-    svg.append("text")
-      .text("Consumer confidence:")
-      .attr("transform", "rotate(-90)")
-      .attr("x", -170)
-      .attr("y", 50)
-      .attr("font-weight","bold");
     };
 
 };
