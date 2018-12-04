@@ -41,21 +41,21 @@ window.onload = function() {
 
     console.log(Object.keys(dataComplete["2008"]))
 
-    svg.selectAll("text")
-      .data(Object.keys(dataComplete["2008"]))
-      .enter()
-      .append("text")
-      .text(function(d) {
-        return d;
-      })
-      .attr("x", function(d) {
-        return 550;
-      })
-      .attr("y", function(d, i) {
-        return -i * (w -100)
-      })
-      .attr("font-family", "sans-serif")
-      .attr("font-size", "11px");
+    // svg.selectAll("text")
+    //   .data(Object.keys(dataComplete["2008"]))
+    //   .enter()
+    //   .append("text")
+    //   .text(function(d) {
+    //     return d;
+    //   })
+    //   .attr("x", function(d) {
+    //     return 550;
+    //   })
+    //   .attr("y", function(d, i) {
+    //     return -i * (w -100)
+    //   })
+    //   .attr("font-family", "sans-serif")
+    //   .attr("font-size", "11px");
 
       svg.append("text")
         .text("France")
@@ -87,6 +87,12 @@ window.onload = function() {
         .attr("x", 580)
         .attr("y", 163)
 
+      svg.append("text")
+        .text("Costumer confidence vs. Women researchers percentage of different countries in different years")
+        .attr("x", 110)
+        .attr("y", 10)
+        .attr("font-weight","bold");
+
       // makes text for X axis
       svg.append("text")
         .text("Women researchers as a percentage of total researchers:")
@@ -102,9 +108,34 @@ window.onload = function() {
         .attr("y", 50)
         .attr("font-weight","bold");
 
+      var str = Object.values(dataComplete['2007'])
+      d3.selectAll(".m")
+				.on("click", function() {
+					var date = this.getAttribute("value");
+
+					if(date == "2014-02-19"){
+            var str = Object.values(dataComplete['2007']);
+					}else if(date == "2014-02-20"){
+            var str = Object.values(dataComplete['2008']);
+					}else if(date == "2014-02-21"){
+            var str = Object.values(dataComplete['2009']);
+					}else if(date == "2014-02-22"){
+            var str = Object.values(dataComplete['2010']);
+          }else if(date == "2014-02-22"){
+            var str = Object.values(dataComplete['2011']);
+          }else if(date == "2014-02-22"){
+            str = Object.values(dataComplete['2012']);
+          }else if(date == "2014-02-22"){
+            str = Object.values(dataComplete['2013']);
+          }else if(date == "2014-02-22"){
+            str = Object.values(dataComplete['2014']);
+					}else{
+						str = Object.values(dataComplete['2015']);
+					}
+        })
     //makeCircles(svg, dataComplete["2007"])
     svg.selectAll("circle")
-       .data(Object.values(dataComplete["2007"]))
+       .data(str)
        .enter()
        .append("circle")
        .attr("cx", function(d) {
@@ -204,7 +235,7 @@ window.onload = function() {
       .call(d3.axisLeft(scaleX));
 
       svg.append("g")
-        .attr("class", "y axis") 
+        .attr("class", "y axis")
         .attr("transform", "translate(" + margin + ", 200 )")
         .call(d3.axisBottom(scaleY));
 
