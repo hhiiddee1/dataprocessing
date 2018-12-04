@@ -204,7 +204,7 @@ window.onload = function() {
       .call(d3.axisLeft(scaleX));
 
       svg.append("g")
-        .attr("class", "y axis")
+        .attr("class", "y axis") 
         .attr("transform", "translate(" + margin + ", 200 )")
         .call(d3.axisBottom(scaleY));
 
