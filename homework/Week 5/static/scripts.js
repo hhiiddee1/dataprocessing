@@ -46,7 +46,6 @@ window.onload = function() {
     console.log(Object.values(dataComplete["2008"]))
 
     //makeCircles(svg, dataComplete["2007"])
-
     svg.selectAll("circle")
        .data(Object.values(dataComplete["2007"]))
        .enter()
@@ -57,7 +56,29 @@ window.onload = function() {
        .attr("cy", function(d) {
           return h - d[0] - margin
        })
-       .attr("r", 5);
+       .attr("r", function(d) {
+         return Math.sqrt((d[1]*12) - w/ 8)
+       })
+       .style("fill", function(d, i){
+         if (i === 0){
+           return "red";
+         }
+         if (i === 1){
+           return "blue";
+         }
+         if (i === 2){
+           return "green";
+         }
+         if (i === 3){
+           return "yellow";
+         }
+         if (i === 4){
+           return "brown";
+         }
+         if (i === 5){
+           return "purple";
+         }
+       });
 
   }).catch(function(e){
     throw(e);
