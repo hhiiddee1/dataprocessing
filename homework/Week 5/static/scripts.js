@@ -41,51 +41,19 @@ window.onload = function() {
 
     console.log(Object.keys(dataComplete["2008"]))
 
-    // svg.selectAll("text")
-    //   .data(Object.keys(dataComplete["2008"]))
-    //   .enter()
-    //   .append("text")
-    //   .text(function(d) {
-    //     return d;
-    //   })
-    //   .attr("x", function(d) {
-    //     return 550;
-    //   })
-    //   .attr("y", function(d, i) {
-    //     return -i * (w -100)
-    //   })
-    //   .attr("font-family", "sans-serif")
-    //   .attr("font-size", "11px");
-
-      svg.append("text")
-        .text("France")
-        .attr("x", 580)
-        .attr("y", 63)
-
-      svg.append("text")
-        .text("The Netherlands")
-        .attr("x", 580)
-        .attr("y", 83)
-
-      svg.append("text")
-        .text("Portugal")
-        .attr("x", 580)
-        .attr("y", 103)
-
-      svg.append("text")
-        .text("Germany")
-        .attr("x", 580)
-        .attr("y", 123)
-
-      svg.append("text")
-        .text("United Kingdom")
-        .attr("x", 580)
-        .attr("y", 143)
-
-      svg.append("text")
-        .text("Korea")
-        .attr("x", 580)
-        .attr("y", 163)
+    svg.selectAll("textlegend")
+      .data(Object.keys(dataComplete["2008"]))
+      .enter()
+      .append("text")
+      .text(function(d) {
+        return d;
+      })
+      .attr("x", function(d) {
+        return 580;
+      })
+      .attr("y", function(d, i) {
+        return i * 20 + 63;
+      })
 
       svg.append("text")
         .text("Costumer confidence vs. Women researchers percentage of different countries in different years")
@@ -108,11 +76,11 @@ window.onload = function() {
         .attr("y", 50)
         .attr("font-weight","bold");
 
-      var str = Object.values(dataComplete['2007'])
+        str = Object.values(dataComplete['2015']);
       d3.selectAll(".m")
 				.on("click", function() {
 					var date = this.getAttribute("value");
-
+          var str = "";
 					if(date == "2014-02-19"){
             var str = Object.values(dataComplete['2007']);
 					}else if(date == "2014-02-20"){
@@ -134,15 +102,26 @@ window.onload = function() {
 					}
         })
     //makeCircles(svg, dataComplete["2007"])
+
+    var scaleY = d3.scaleLinear()
+                    .domain([95, 105])
+                    .range([200, 0]);
+
+    var scaleX = d3.scaleLinear()
+                    .domain([0,50])
+                    .range([0, 400]);
+
+
+
     svg.selectAll("circle")
        .data(str)
        .enter()
        .append("circle")
        .attr("cx", function(d) {
-          return d[1] * 8 + margin;
+          return scaleX(d[1]) + margin;
        })
        .attr("cy", function(d) {
-          return h - d[0] - margin
+          return scaleY(d[0]) + 10
        })
        .attr("r", function(d) {
          return Math.sqrt((d[1]*12) - w/ 8)
@@ -208,7 +187,7 @@ window.onload = function() {
   console.log('Yes, you can!')
 
   var w = 800;
-  var h = 300;
+  var h = 310;
   var margin = 100;
   var padding = 5;
   //Create SVG element
@@ -221,23 +200,23 @@ window.onload = function() {
 
   function makeAxis(svg) {
     // makes scale for Y axis
-    var scaleX = d3.scaleLinear()
-                    .domain([0, 200])
-                        .range([200, 10]);
-
     var scaleY = d3.scaleLinear()
+                    .domain([95, 105])
+                        .range([200, 0]);
+
+    var scaleX = d3.scaleLinear()
                     .domain([0,50])
                     .range([0, 400]);
     //Create Y axis
     svg.append("g")
       .attr("class", "y axis")
-      .attr("transform", "translate(100, 0 )")
-      .call(d3.axisLeft(scaleX));
+      .attr("transform", "translate(100, 10 )")
+      .call(d3.axisLeft(scaleY));
 
       svg.append("g")
         .attr("class", "y axis")
-        .attr("transform", "translate(" + margin + ", 200 )")
-        .call(d3.axisBottom(scaleY));
+        .attr("transform", "translate(" + margin + ", 210 )")
+        .call(d3.axisBottom(scaleX));
 
     };
 
