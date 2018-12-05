@@ -38,6 +38,10 @@ window.onload = function() {
       }
       dataComplete[d["time"]][countries[counter]].push(d["datapoint"])
     })
+      // dataComplete.forEach(function(d){
+      //   console.log(d);
+      // })
+
 
     console.log(Object.keys(dataComplete["2008"]))
 
@@ -55,11 +59,6 @@ window.onload = function() {
         return i * 20 + 63;
       })
 
-      svg.append("text")
-        .text("Costumer confidence vs. Women researchers percentage of different countries in different years")
-        .attr("x", 110)
-        .attr("y", 10)
-        .attr("font-weight","bold");
 
       // makes text for X axis
       svg.append("text")
@@ -76,12 +75,12 @@ window.onload = function() {
         .attr("y", 50)
         .attr("font-weight","bold");
 
-        str = Object.values(dataComplete['2015']);
       d3.selectAll(".m")
 				.on("click", function() {
 					var date = this.getAttribute("value");
           var str = "";
           d3.selectAll("#dot").remove()
+          d3.selectAll("#title").remove()
 					if(date == "2007"){
             var str = Object.values(dataComplete['2007']);
 					}else if(date == "2008"){
@@ -101,7 +100,7 @@ window.onload = function() {
 					}else{
 						str = Object.values(dataComplete['2015']);
 					}
-          scatterplot(str);
+          scatterplot(str, date);
         })
     //makeCircles(svg, dataComplete["2007"])
 
@@ -113,8 +112,8 @@ window.onload = function() {
                     .domain([0,50])
                     .range([0, 400]);
 
-
-    function scatterplot(str){
+    scatterplot(Object.values(dataComplete['2015']), "2015")
+    function scatterplot(str, date){
 
     svg = d3.selectAll("#svg")
 
@@ -152,6 +151,13 @@ window.onload = function() {
            return "purple";
          }
        });
+
+       svg.append("text")
+         .text("Costumer confidence vs. Women researchers percentage of different countries in " + date + "")
+         .attr("x", 110)
+         .attr("y", 10)
+         .attr("id", "title")
+         .attr("font-weight","bold");
      }
 
     svg.selectAll("rect")
