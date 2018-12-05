@@ -1,3 +1,5 @@
+// Hidde van Oijen
+// 12451096
 window.onload = function() {
 
 
