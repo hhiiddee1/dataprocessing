@@ -205,7 +205,7 @@ window.onload = function() {
   console.log('Yes, you can!')
 
   // makes variables
-  var w = 800;
+  var w = 1400;
   var h = 300;
   var margin = 100;
   var marginup = 50;
