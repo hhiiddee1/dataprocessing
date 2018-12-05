@@ -81,25 +81,28 @@ window.onload = function() {
 				.on("click", function() {
 					var date = this.getAttribute("value");
           var str = "";
+          d3.selectAll("#dot").remove()
 					if(date == "2014-02-19"){
             var str = Object.values(dataComplete['2007']);
+
 					}else if(date == "2014-02-20"){
             var str = Object.values(dataComplete['2008']);
 					}else if(date == "2014-02-21"){
             var str = Object.values(dataComplete['2009']);
-					}else if(date == "2014-02-22"){
+					}else if(date == "2014-02-23"){
             var str = Object.values(dataComplete['2010']);
-          }else if(date == "2014-02-22"){
+          }else if(date == "2014-02-24"){
             var str = Object.values(dataComplete['2011']);
-          }else if(date == "2014-02-22"){
+          }else if(date == "2014-02-25"){
             str = Object.values(dataComplete['2012']);
-          }else if(date == "2014-02-22"){
+          }else if(date == "2014-02-26"){
             str = Object.values(dataComplete['2013']);
-          }else if(date == "2014-02-22"){
+          }else if(date == "2014-02-27"){
             str = Object.values(dataComplete['2014']);
 					}else{
 						str = Object.values(dataComplete['2015']);
 					}
+          scatterplot(str);
         })
     //makeCircles(svg, dataComplete["2007"])
 
@@ -112,11 +115,15 @@ window.onload = function() {
                     .range([0, 400]);
 
 
+    function scatterplot(str){
+
+    svg = d3.selectAll("#svg")
 
     svg.selectAll("circle")
        .data(str)
        .enter()
        .append("circle")
+       .attr("id", "dot")
        .attr("cx", function(d) {
           return scaleX(d[1]) + margin;
        })
@@ -146,6 +153,7 @@ window.onload = function() {
            return "purple";
          }
        });
+     }
 
     svg.selectAll("rect")
         .data(Object.keys(dataComplete["2007"]))
@@ -193,6 +201,7 @@ window.onload = function() {
   //Create SVG element
   var svg = d3.select("body")
               .append("svg")
+              .attr("id", "svg")
               .attr("width", w)
               .attr("height", h);
 
