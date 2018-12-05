@@ -1,8 +1,8 @@
 window.onload = function() {
 
 
-  var consConf = "http://stats.oecd.org/SDMX-JSON/data/HH_DASH/FRA+DEU+KOR+NLD+PRT+GBR.COCONF.A/all?startTime=2007&endTime=2015"
-  var womenInScience = "http://stats.oecd.org/SDMX-JSON/data/MSTI_PUB/TH_WRXRS.FRA+DEU+KOR+NLD+PRT+GBR/all?startTime=2007&endTime=2015"
+  var consConf = "https://stats.oecd.org/SDMX-JSON/data/HH_DASH/FRA+DEU+KOR+NLD+PRT+GBR.COCONF.A/all?startTime=2007&endTime=2015"
+  var womenInScience = "https://stats.oecd.org/SDMX-JSON/data/MSTI_PUB/TH_WRXRS.FRA+DEU+KOR+NLD+PRT+GBR/all?startTime=2007&endTime=2015"
   console.log("hello,world")
 
   var year2007 = {"France": [], "Netherlands": [], "Portugal": [], "Germany": [], "United Kingdom": [], "Korea": []}
@@ -82,22 +82,21 @@ window.onload = function() {
 					var date = this.getAttribute("value");
           var str = "";
           d3.selectAll("#dot").remove()
-					if(date == "2014-02-19"){
+					if(date == "2007"){
             var str = Object.values(dataComplete['2007']);
-
-					}else if(date == "2014-02-20"){
+					}else if(date == "2008"){
             var str = Object.values(dataComplete['2008']);
-					}else if(date == "2014-02-21"){
+					}else if(date == "2009"){
             var str = Object.values(dataComplete['2009']);
-					}else if(date == "2014-02-23"){
+					}else if(date == "2010"){
             var str = Object.values(dataComplete['2010']);
-          }else if(date == "2014-02-24"){
+          }else if(date == "2011"){
             var str = Object.values(dataComplete['2011']);
-          }else if(date == "2014-02-25"){
+          }else if(date == "2012"){
             str = Object.values(dataComplete['2012']);
-          }else if(date == "2014-02-26"){
+          }else if(date == "2013"){
             str = Object.values(dataComplete['2013']);
-          }else if(date == "2014-02-27"){
+          }else if(date == "2014"){
             str = Object.values(dataComplete['2014']);
 					}else{
 						str = Object.values(dataComplete['2015']);
