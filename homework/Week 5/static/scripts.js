@@ -27,7 +27,7 @@ window.onload = function() {
     var dataset1 = transformResponse(d[1]);
     var dataset2 = transformResponse(d[0]);
 
-
+    // parses dataset
     dataset1.forEach(function(d){
       dataComplete[d["time"]][d["Country"]].push(d["datapoint"])
     });
@@ -38,13 +38,8 @@ window.onload = function() {
       }
       dataComplete[d["time"]][countries[counter]].push(d["datapoint"])
     })
-      // dataComplete.forEach(function(d){
-      //   console.log(d);
-      // })
 
-
-    console.log(Object.keys(dataComplete["2008"]))
-
+    // makes text for legend
     svg.selectAll("textlegend")
       .data(Object.keys(dataComplete["2008"]))
       .enter()
@@ -60,21 +55,23 @@ window.onload = function() {
       })
 
 
-      // makes text for X axis
-      svg.append("text")
-        .text("Women researchers as a percentage of total researchers:")
-        .attr("x", 110)
-        .attr("y", 250)
-        .attr("font-weight","bold");
-
       // makes text for Y axis
       svg.append("text")
-        .text("Consumer confidence:")
+        .text("Women researchers as a percentage of total researchers")
+        .attr("x", 110)
+        .attr("y", 280)
+        .attr("font-weight","bold");
+
+      // makes text for X axis
+      svg.append("text")
+        .text("Consumer confidence")
         .attr("transform", "rotate(-90)")
-        .attr("x", -170)
+        .attr("x", -220)
         .attr("y", 50)
         .attr("font-weight","bold");
 
+      // makes the dropdown button interactive
+      //http://bl.ocks.org/anupsavvy/9513382
       d3.selectAll(".m")
 				.on("click", function() {
 					var date = this.getAttribute("value");
@@ -102,8 +99,8 @@ window.onload = function() {
 					}
           scatterplot(str, date);
         })
-    //makeCircles(svg, dataComplete["2007"])
 
+    // makes scales for x and y
     var scaleY = d3.scaleLinear()
                     .domain([95, 105])
                     .range([200, 0]);
@@ -113,10 +110,13 @@ window.onload = function() {
                     .range([0, 400]);
 
     scatterplot(Object.values(dataComplete['2015']), "2015")
+
+    //makes function for scatterplot variables
     function scatterplot(str, date){
 
     svg = d3.selectAll("#svg")
 
+    // makes dots for scatterplot
     svg.selectAll("circle")
        .data(str)
        .enter()
@@ -126,7 +126,7 @@ window.onload = function() {
           return scaleX(d[1]) + margin;
        })
        .attr("cy", function(d) {
-          return scaleY(d[0]) + 10
+          return scaleY(d[0]) + marginup
        })
        .attr("r", function(d) {
          return Math.sqrt((d[1]*12) - w/ 8)
@@ -152,14 +152,17 @@ window.onload = function() {
          }
        });
 
+       // makes text for scatterplot
        svg.append("text")
          .text("Costumer confidence vs. Women researchers percentage of different countries in " + date + "")
-         .attr("x", 110)
-         .attr("y", 10)
+         .attr("x", 0)
+         .attr("y", 20)
          .attr("id", "title")
-         .attr("font-weight","bold");
+         .attr("font-weight","bold")
+         .attr("font-size", "19px");
      }
 
+    // makes rectangles for legend
     svg.selectAll("rect")
         .data(Object.keys(dataComplete["2007"]))
         .enter()
@@ -199,10 +202,13 @@ window.onload = function() {
 
   console.log('Yes, you can!')
 
+  // makes variables
   var w = 800;
-  var h = 310;
+  var h = 300;
   var margin = 100;
+  var marginup = 50;
   var padding = 5;
+
   //Create SVG element
   var svg = d3.select("body")
               .append("svg")
@@ -212,6 +218,7 @@ window.onload = function() {
 
   makeAxis(svg);
 
+  // makes axises
   function makeAxis(svg) {
     // makes scale for Y axis
     var scaleY = d3.scaleLinear()
@@ -224,21 +231,17 @@ window.onload = function() {
     //Create Y axis
     svg.append("g")
       .attr("class", "y axis")
-      .attr("transform", "translate(100, 10 )")
+      .attr("transform", "translate(100," + marginup + " )")
       .call(d3.axisLeft(scaleY));
 
       svg.append("g")
-        .attr("class", "y axis")
-        .attr("transform", "translate(" + margin + ", 210 )")
+        .attr("class", "x axis")
+        .attr("transform", "translate(" + margin + ", 250 )")
         .call(d3.axisBottom(scaleX));
 
     };
 
 };
-
-
-//function makeCircles (d, svg, data){
-
 
 
 function transformResponse(data){
