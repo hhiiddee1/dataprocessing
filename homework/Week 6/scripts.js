@@ -3,20 +3,20 @@
 
 var year2015 = []
 var countries = []
-d3v5.json("data.json").then(function(data) {
-      var countries = Object.keys(data)
-      for (const [keys] of Object.entries(data)) {
-        country = data[keys];
+d3v5.json("data.json").then(function(datacsv) {
+      var countries = Object.keys(datacsv)
+      for (const [keys] of Object.entries(datacsv)) {
+        country = datacsv[keys];
         countries.push(country);
-        percentage = data[keys]["2015"];
+        percentage = datacsv[keys]["2015"];
         year2015.push(percentage);
       }
       console.log(countries);
       console.log(year2015);
-      console.log(data)
+      console.log(datacsv)
       makeSvgs()
 
-      makeMap()
+      makeMap(datacsv)
 });
 
 
@@ -40,7 +40,7 @@ var svgWorldMap = d3.select("body")
 // function makeAxis(svg) {
 //
 // }
-function makeMap() {
+function makeMap(datacsv) {
     var map = new Datamap({
         element: document.getElementById('container'),
         setProjection: function(element) {
@@ -54,8 +54,14 @@ function makeMap() {
 
             return {path: path, projection: projection};
           },
-  //   var map = new Datamap({
-  // scope: 'world',
-  // element: document.getElementById('container')
+          geographyConfig: {
+  highlightBorderColor: '#bada55',
+  popupTemplate: function(geography, data) {
+    console.log(datacsv)
+     return '<div class="hoverinfo">' + geography.properties.name + '% renewable energy: ' +  data.year2015 + ' '
+   },
+   highlightBorderWidth: 3
+ },
+data: datacsv
 });
 }
