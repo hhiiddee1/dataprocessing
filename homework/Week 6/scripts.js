@@ -26,11 +26,10 @@ d3v5.json("data.json").then(function(datacsv) {
 
       makeAxis(svgLineChart)
 
-      makeMap(datacsv)
+      makeMap(svgLineChart, datacsv)
 
       makeText(svgLineChart)
 
-      makeLineChart(svgLineChart, datacsv)
 });
 
 function makeAxis(svg) {
@@ -80,7 +79,7 @@ function makeText(svg) {
     .attr("font-weight","bold");
   }
 
-function makeMap(datacsv) {
+function makeMap(svg, datacsv) {
     var map = new Datamap({
         element: document.getElementById('container'),
         setProjection: function(element) {
@@ -107,19 +106,44 @@ done: function(datamap) {
        datamap.svg.selectAll('.datamaps-subunit').on('click', function(geography) {
            var state_id = geography.id;
            console.log(state_id)
+           d3.selectAll("#line").remove()
+           makeLineChart(svg, datacsv, state_id)
+
+
        })
      }
 });
 }
 
-function makeLineChart(svg, data){
+function makeLineChart(svg, data, id){
+  console.log(data[id])
+  data2 = data[id]
+  percentages = []
+  for (const [keys] of Object.entries(data2)) {
+    percentage = data2[keys];
+    percentages.push(percentage);
+  }
+  console.log(percentages)
+  var scaleY = d3v5.scaleLinear()
+                  .domain([0, 100])
+                      .range([300, 100]);
 
-  var line = d3.line()
-      .x(function(d, i) { return xScale(i); })
-      .y(function(d) { return yScale(d); })
+  var scaleX = d3v5.scaleLinear()
+                  .domain([0,11])
+                  .range([0, 400]);
+  var line = d3v5.line()
+      .x(function(d, i) { return scaleX(i); })
+      .y(function(d, i) { return scaleY(d); })
 
   svg.append("path")
-      .datum(data["AUT"])
+      // .data(percentages)
       .attr("class", "line")
-      .attr("d", line);
+      .attr("d", line(percentages))
+      .attr("fill", "white")
+      .attr("id", "line")
+      .style("stroke", "black")
+      .style("stroke-width", 3)
+      .attr("transform", "translate(100,0 )")
+
+      console.log("dhaha")
 }

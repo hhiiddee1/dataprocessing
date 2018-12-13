@@ -14,9 +14,10 @@ def main():
             if row["date:text"] == "2004":
                 dict_temp = {}
                 year = 2004
-            dict_temp["year" + str(year)] = int(float(row["obsValue:number"]))
-            dict[change_to_landcode(row["country:text"])] = dict_temp
-            year += 1
+            if row["date:text"] != "Target 2020":
+                dict_temp["year" + str(year)] = int(float(row["obsValue:number"]))
+                dict[change_to_landcode(row["country:text"])] = dict_temp
+                year += 1
 
     # writes data to JSON file
     with open('data.json', 'w') as json_file:
