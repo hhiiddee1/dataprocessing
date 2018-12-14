@@ -16,7 +16,17 @@ def main():
                 year = 2004
             if row["date:text"] != "Target 2020":
                 dict_temp["year" + str(year)] = int(float(row["obsValue:number"]))
+                if row["date:text"] == "2015":
+                    if int(float(row["obsValue:number"])) < 20:
+                        dict_temp["fillKey"] = "superlight"
+                    elif int(float(row["obsValue:number"])) < 40:
+                        dict_temp["fillKey"] = "light"
+                    elif int(float(row["obsValue:number"])) < 60:
+                        dict_temp["fillKey"] = "dark"
+                    elif int(float(row["obsValue:number"])) < 80:
+                        dict_temp["fillKey"] = "superdark"
                 dict[change_to_landcode(row["country:text"])] = dict_temp
+
                 year += 1
 
     # writes data to JSON file

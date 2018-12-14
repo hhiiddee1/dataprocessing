@@ -100,6 +100,13 @@ function makeMap(svg, datacsv) {
    },
    highlightBorderWidth: 3
  },
+ fills: {
+'superlight': '#7bc86c',
+'light': '#61bd4f',
+'dark': '#519839',
+'superdark': '#3f6f21',
+defaultFill: '#6A6C6E'
+},
 data: datacsv,
 
 done: function(datamap) {
@@ -121,8 +128,10 @@ function makeLineChart(svg, data, id){
   data2 = data[id]
   percentages = []
   for (const [keys] of Object.entries(data2)) {
-    percentage = data2[keys];
-    percentages.push(percentage);
+    if (Number.isInteger(data2[keys])){
+      percentage = data2[keys];
+      percentages.push(percentage);
+    }
   }
   console.log(percentages)
   var scaleY = d3v5.scaleLinear()
