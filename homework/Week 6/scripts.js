@@ -107,6 +107,7 @@ done: function(datamap) {
            var state_id = geography.id;
            console.log(state_id)
            d3.selectAll("#line").remove()
+           d3.selectAll("#dot").remove()
            makeLineChart(svg, datacsv, state_id)
 
 
@@ -145,5 +146,44 @@ function makeLineChart(svg, data, id){
       .style("stroke-width", 3)
       .attr("transform", "translate(100,0 )")
 
-      console.log("dhaha")
+  var tooltip = d3v5.select("body").append("div")
+    .style("position","absolute")
+    .style("background","#ff4d4d")
+    .style("padding","5 10px")
+    .style("border","1px #ff1a1a solid")
+    .style("border-radius","5px")
+    .style("opacity","0");
+
+  svg.selectAll("circle")
+     .data(percentages)
+     .enter()
+     .append("circle")
+     .attr("id", "dot")
+     .attr("cx", function(d,i) {
+        return scaleX(i);
+     })
+     .attr("cy", function(d) {
+        return scaleY(d);
+     })
+     .attr("r", function(d) {
+       return 5
+     })
+     .attr("transform", "translate(100,0 )")
+     // makes text appear when hovering over
+      .on("mouseover", function(d,i){
+        tooltip.transition()
+          .style("opacity", 1)
+
+        tooltip.html(d,i)
+          .style("left", (scaleX(i)+ 100)+"px")
+          .style("top",(480 + scaleY(d))+"px")
+
+          d3.select(this).style("opacity", 1)
+      })
+      // makes text go away when hovering over
+      .on("mouseout", function(d){
+        tooltip.transition()
+            .style("opacity", 0)
+        d3.select(this).style("opacity", 1)
+      });
 }
