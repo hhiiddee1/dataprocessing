@@ -82,10 +82,10 @@ function makeAxis(svg) {
     .attr("width", 400 )
     .attr("height", 1)
     .attr("x", function(d) {
-      return marginSides;
+      return 100;
     })
     .attr("y", function(d) {
-      return h - marginSides;
+      return 300;
     });
 
     // makes X axis
@@ -96,10 +96,10 @@ function makeAxis(svg) {
     .attr("width", 1 )
     .attr("height", 5)
     .attr("x", function(d, i) {
-      return scaleX(i) + marginSides;
+      return scaleX(i) + 100;
     })
     .attr("y", function(d) {
-      return h - marginSides;
+      return 300;
     });
 
 }
@@ -198,7 +198,7 @@ function makeLineChart(svg, data, id, name){
   // makes Y scale
   var scaleY = d3v5.scaleLinear()
                   .domain([0, 100])
-                      .range([h - marginSides, marginSides]);
+                      .range([300, 100]);
 
   // makes X scale
   var scaleX = d3v5.scaleLinear()
