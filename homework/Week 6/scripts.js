@@ -17,6 +17,7 @@ d3v5.json("data.json").then(function(datacsv) {
       // makes variables and svg
       var w = 800;
       var h = 400;
+      var marginSides = 100
 
       var svgLineChart = d3v5.select("body")
                           .append("svg")
@@ -54,8 +55,8 @@ function makeAxis(svg) {
   year = 2003
   for (i = 0; i < 12; i++) {
     year += 1
-    years.push(year.toString())
-  }
+    years.push(year.toString());
+  };
 
   // makes text for X axis
   svg.selectAll("textXAxis")
@@ -65,13 +66,13 @@ function makeAxis(svg) {
     .text(function(d) {
       return d;
     })
-    .attr("transform","rotate(90)", "translate(100, 300 )")
+    .attr("transform","rotate(90)")
     .attr("x", function(d) {
       return 310;
     })
     .attr("y", function(d,i) {
       return  -scaleX(i) - 95;
-    })
+    });
 
     // makes  X axis
     svg.selectAll("rectXaxis")
@@ -81,11 +82,11 @@ function makeAxis(svg) {
     .attr("width", 400 )
     .attr("height", 1)
     .attr("x", function(d) {
-      return 100;
+      return marginSides;
     })
     .attr("y", function(d) {
-      return 300;
-    })
+      return h - marginSides;
+    });
 
     // makes X axis
     svg.selectAll("rectXaxis")
@@ -95,11 +96,11 @@ function makeAxis(svg) {
     .attr("width", 1 )
     .attr("height", 5)
     .attr("x", function(d, i) {
-      return scaleX(i) + 100;
+      return scaleX(i) + marginSides;
     })
     .attr("y", function(d) {
-      return 300;
-    })
+      return h - marginSides;
+    });
 
 }
 
@@ -180,7 +181,7 @@ function makeMap(svg, datacsv) {
        })
      }
 });
-}
+};
 
 function makeLineChart(svg, data, id, name){
 
@@ -191,13 +192,13 @@ function makeLineChart(svg, data, id, name){
     if (Number.isInteger(data2[keys])){
       percentage = data2[keys];
       percentages.push(percentage);
-    }
-  }
+    };
+  };
 
   // makes Y scale
   var scaleY = d3v5.scaleLinear()
                   .domain([0, 100])
-                      .range([300, 100]);
+                      .range([h - marginSides, marginSides]);
 
   // makes X scale
   var scaleX = d3v5.scaleLinear()
@@ -207,7 +208,7 @@ function makeLineChart(svg, data, id, name){
   // defines line x and y variables
   var line = d3v5.line()
       .x(function(d, i) { return scaleX(i); })
-      .y(function(d, i) { return scaleY(d); })
+      .y(function(d, i) { return scaleY(d); });
 
   // makes line
   svg.append("path")
@@ -218,7 +219,7 @@ function makeLineChart(svg, data, id, name){
       .attr("id", "line")
       .style("stroke", "#00FFFF")
       .style("stroke-width", 3)
-      .attr("transform", "translate(100,0 )")
+      .attr("transform", "translate(100,0 )");
 
   // makes tooltip for hovering over
   var tooltip = d3v5.select("body").append("div")
@@ -253,7 +254,7 @@ function makeLineChart(svg, data, id, name){
           .style("opacity", 1)
 
         tooltip.html(d,i)
-          .style("left", (scaleX(i)+ 100)+"px")
+          .style("left", (scaleX(i)+ marginSides)+"px")
           .style("top",(750 + scaleY(d))+"px")
 
           d3.select(this).style("opacity", 1)
@@ -273,4 +274,4 @@ function makeLineChart(svg, data, id, name){
     .attr("id", "title")
     .attr("font-weight","bold")
     .attr("font-size", "19px");
-}
+};
