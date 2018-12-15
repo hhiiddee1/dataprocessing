@@ -173,7 +173,6 @@ function makeMap(svg, datacsv) {
        datamap.svg.selectAll('.datamaps-subunit').on('click', function(geography) {
            var country_id = geography.id;
            var country_name = geography.properties.name;
-           console.log(country_name)
            d3.selectAll("#line").remove()
            d3.selectAll("#dot").remove()
            d3.selectAll("#title").remove()
