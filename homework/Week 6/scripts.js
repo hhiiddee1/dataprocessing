@@ -5,6 +5,10 @@
 // loads data in
 var year2015 = []
 var countries = []
+// makes variables
+var w = 800;
+var h = 400;
+var marginSides = 100
 d3v5.json("data.json").then(function(datacsv) {
       var countries = Object.keys(datacsv)
       for (const [keys] of Object.entries(datacsv)) {
@@ -14,11 +18,7 @@ d3v5.json("data.json").then(function(datacsv) {
         year2015.push(percentage);
       }
 
-      // makes variables and svg
-      var w = 800;
-      var h = 400;
-      var marginSides = 100
-
+      // makes svg
       var svgLineChart = d3v5.select("body")
                           .append("svg")
                           .attr("id", "svgLineChart")
@@ -47,7 +47,7 @@ function makeAxis(svg) {
   // create Y axis
   svg.append("g")
     .attr("class", "y axis")
-    .attr("transform", "translate(100,100 )")
+    .attr("transform", "translate(" + marginSides + "," + marginSides + ")")
     .call(d3v5.axisLeft(scaleY));
 
   // makes list of all the years
@@ -82,10 +82,10 @@ function makeAxis(svg) {
     .attr("width", 400 )
     .attr("height", 1)
     .attr("x", function(d) {
-      return 100;
+      return marginSides;
     })
     .attr("y", function(d) {
-      return 300;
+      return h - marginSides;
     });
 
     // makes X axis
@@ -96,7 +96,7 @@ function makeAxis(svg) {
     .attr("width", 1 )
     .attr("height", 5)
     .attr("x", function(d, i) {
-      return scaleX(i) + 100;
+      return scaleX(i) + marginSides;
     })
     .attr("y", function(d) {
       return 300;
@@ -198,7 +198,7 @@ function makeLineChart(svg, data, id, name){
   // makes Y scale
   var scaleY = d3v5.scaleLinear()
                   .domain([0, 100])
-                      .range([300, 100]);
+                      .range([h - marginSides, marginSides]);
 
   // makes X scale
   var scaleX = d3v5.scaleLinear()
@@ -219,7 +219,7 @@ function makeLineChart(svg, data, id, name){
       .attr("id", "line")
       .style("stroke", "#00FFFF")
       .style("stroke-width", 3)
-      .attr("transform", "translate(100,0 )");
+      .attr("transform", "translate(" + marginSides + ",0 )");
 
   // makes tooltip for hovering over
   var tooltip = d3v5.select("body").append("div")
@@ -247,14 +247,14 @@ function makeLineChart(svg, data, id, name){
      .attr("r", function(d) {
        return 5
      })
-     .attr("transform", "translate(100,0 )")
+     .attr("transform", "translate(" + marginSides + ",0 )")
      // makes text appear when hovering over
       .on("mouseover", function(d,i){
         tooltip.transition()
           .style("opacity", 1)
 
         tooltip.html(d,i)
-          .style("left", (scaleX(i)+ marginSides)+"px")
+          .style("left", (scaleX(i) + 100)+"px")
           .style("top",(750 + scaleY(d))+"px")
 
           d3.select(this).style("opacity", 1)
