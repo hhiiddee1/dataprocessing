@@ -255,7 +255,7 @@ function makeLineChart(svg, data, id, name){
 
         tooltip.html(d,i)
           .style("left", (scaleX(i) + 100)+"px")
-          .style("top",(750 + scaleY(d))+"px")
+          .style("top",(730 + scaleY(d))+"px")
 
           d3.select(this).style("opacity", 1)
       })
